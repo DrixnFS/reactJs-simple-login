@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { instance } from "./stores/UserStore";
 import LoginForm from './components/LoginForm';
 import LogoutForm from './components/LogoutForm';
-import './App.css';
+import './App.min.css';
 
 //Mock backend import for testing functionality
 import BackEnd from "./mock/BackEnd";
@@ -14,7 +14,10 @@ class App extends React.Component {
 		try{
 			//Check the mock api if the user is logged in session, for this showcase it will never happen as no session storage is present
 			let res = BackEnd.isLoggedIn({
-				method: "POST"
+				method: "POST",
+				body:JSON.stringify({
+					token: "some-kind-of-token-of-logged-user"
+				})
 			});
 
 			//Parses string response back into JSON, just to demonstrate this would be needed if using proper API or websocket communication
@@ -42,7 +45,7 @@ class App extends React.Component {
 			return (
 				<div className="app">
 					<div className="container">
-						Loading, please wait...
+						Nahrávám, prosím čekejte...
 					</div>
 				</div>
 			)

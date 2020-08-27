@@ -1,0 +1,20 @@
+.loginForm,
+.logoutForm {
+    margin-top: 1em;
+}
+
+.sml-error {
+    display:block;
+    font-size: $font-size-small;
+    color: $color-red;
+    padding: .2em;
+    text-align: center;
+}
+
+.res-error {
+    margin-top: .5em;
+    padding: .3em;
+    color: $color-red;
+    font-weight: 450;
+    text-align: center;
+}

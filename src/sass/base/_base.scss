@@ -1,0 +1,21 @@
+html, body {
+    width: 100vw;
+    height: 100vh;
+    font-family: $font-family;
+}
+
+body {
+    background-color: #F8F8F8;
+}
+
+* {
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+#root,
+.app {
+    width:100%;
+    height:100%;
+}

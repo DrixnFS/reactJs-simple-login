@@ -9,28 +9,43 @@ class LogoutForm extends React.Component {
 
 	doLogout(){
 		try{
-			console.log('login out');
-			//TODO: Mock backend to logout the user
+			//Mock API call to logout the user
+			let res = BackEnd.logout({
+				method: 'POST',
+				body: JSON.stringify({
+					token: "some-kind-of-token-of-logged-user"
+				})
+			});
 			
-		} catch(err){
+			//Parses string response back into JSON, just to demonstrate this would be needed if using proper API or websocket communication
+			let result = JSON.parse(res);
 
+			//Based on data received from mock API either set status to not logged or show error why it couldnt logout
+			if(result && result.success){
+				instance.isLoggedIn = false;
+				instance.username = '';
+			} else if( result && result.err ) {
+				//If there was some issues with logging user out, for example he wasnt really logged in, probably hacked, or session storage already removed him error will be set here
+			}
+		} catch(err){
+			console.error(`Err occured LoginForm.doLogout:10 -- ${err}`);
 		}
 	}
 
 	render() {
 		return (
-			<div className="logoutForm">
-				Welcome {instance.username}
+			<form className="logoutForm" action="#">
+				Vítejte,  {instance.username}
 
 				<SubmitButton 
 				
-					text={'Log out'}
+					text={'Odhlásit se'}
 					disabled={false}
 					onClick={ () => this.doLogout() }
 
 				/>
 
-			</div>
+			</form>
 		)
 	}; 
 }

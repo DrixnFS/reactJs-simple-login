@@ -1,0 +1,18 @@
+//Imports variables
+@import './abstracts/variables';
+
+//Imports core base styles
+@import './base/base';
+
+//Imports main layout body styles
+@import './layout/body';
+
+//Imports component styles
+@import './components/forms';
+@import './components/inputs';
+@import './components/buttons';
+@import './components/cheatsheet';
+
+
+//Imports styles handling responsivity
+@import 'base/responsivity';

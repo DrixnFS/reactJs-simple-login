@@ -16,17 +16,28 @@ const BackEnd = {
         var res = {
             success : false,
             err: true,
-            msg: 'No arg received',
+            msg: 'arg-missing',
             username : ''
         };
 
+        //If request object received
+        if(req){
+            //if the method is post
+            if(req.method === 'POST'){
 
-        
+                //If there would be session storage with logged users and such there would be code block to check if user who opened the app is logged in, probably based on the token
+
+            }
+        }
+
+        //Just for the mock purposes, returns msg as user wouldnt be found in user session
+        res.msg = 'user-not-logged';
+
         return JSON.stringify(res);
     },
 
     /**
-     * 
+     * Validates the user against DB and logs him in
      * @param {Object} req -
      */
     login : function(req){
@@ -34,7 +45,7 @@ const BackEnd = {
         var res = {
             success : false,
             err: true,
-            msg: 'No arg received',
+            msg: 'arg-missing',
             username : ''
         };
 
@@ -55,28 +66,62 @@ const BackEnd = {
                         if(UserDB[parsed_req.username].pass === parsed_req.password){
                             res.success = true;
                             res.err = false;
-                            res.msg = "Uživatel je validní";
+                            res.msg = "user-valid";
                             res.username = UserDB[parsed_req.username].email;
+
+                            //There would also be code of block to add a user into user session if there would be one
+
                         } else {
-                            res.msg = "Špatné heslo";
+                            res.msg = "password-bad";
                         }
 
                     } else {
-                        res.msg = 'Neznámý uživatel';
+                        res.msg = 'user-unknown';
                     }
 
 
                 } else {
-                    res.msg = 'Username or password missing';
+                    res.msg = 'param-missing';
                 }
 
             } else {
-                res.msg = 'POST method only';
+                res.msg = 'method-not-supported';
             }
         }
 
         return JSON.stringify(res);
 
+    },
+
+    /**
+     * Logs out the user, validating that he is logged and in session then loging him out
+     * Arrow type function just to demonstrate i know what they are... Arrow type functions arent scoped as standard fces that means this. in arrow represents scope higher 
+     * than this. in normal fce
+     * @param {Object} req - 
+     */
+    logout : (req) =>{
+        //Initial response object for the client
+        var res = {
+            success : false,
+            err: true,
+            msg: 'arg-missing',
+            username : ''
+        };
+
+        //If request object received
+        if(req){
+            //if the method is post
+            if(req.method === 'POST'){
+        
+                //Code block for Validating the user that he is really logged in and then removing him from the session, probably based on the token
+                res.success = true;
+                res.err = false;
+                res.msg = 'user-logedout';
+        
+            }
+        }
+
+        return JSON.stringify(res);
     }
 
 }
