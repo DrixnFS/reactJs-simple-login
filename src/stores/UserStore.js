@@ -16,4 +16,5 @@ import { extendObservable } from 'mobx';
     }
  }
 
- export default new UserStore();
+//Should be exporting singleton
+export const instance = new UserStore();
