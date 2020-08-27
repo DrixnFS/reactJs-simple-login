@@ -7,6 +7,9 @@ import BackEnd from "../mock/BackEnd";
 
 class LogoutForm extends React.Component {
 
+	/**
+	 * callback function for login the user out of the application
+	 */
 	doLogout(){
 		try{
 			//Mock API call to logout the user

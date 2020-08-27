@@ -8,8 +8,8 @@ import UserDB from "./UserDB";
 const BackEnd = {
 
     /**
-     * 
-     * @param {Object} req 
+     * Checks if user is in session based on token received, if so sends response to client to log him automatically
+     * @param {Object} req - request object received from client
      */
     isLoggedIn : function(req){
         //Initial response object for the client
@@ -38,7 +38,7 @@ const BackEnd = {
 
     /**
      * Validates the user against DB and logs him in
-     * @param {Object} req -
+     * @param {Object} req - request object received from client
      */
     login : function(req){
         //Initial response object for the client
@@ -97,7 +97,7 @@ const BackEnd = {
      * Logs out the user, validating that he is logged and in session then loging him out
      * Arrow type function just to demonstrate i know what they are... Arrow type functions arent scoped as standard fces that means this. in arrow represents scope higher 
      * than this. in normal fce
-     * @param {Object} req - 
+     * @param {Object} req -  request object received from client
      */
     logout : (req) =>{
         //Initial response object for the client
